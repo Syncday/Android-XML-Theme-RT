@@ -1,0 +1,29 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Theme.Lab" parent="Theme.AppCompat.Light.NoActionBar" >
+        <item name="titleColor">#151515</item>
+        <item name="subTitleColor">#515151</item>
+        <item name="textPrimaryColor">#222222</item>
+        <item name="backgroundPrimaryColor">#F1F1F1</item>
+        <item name="iconBackgroundColor">#03A9F4</item>
+        <item name="editTextBackgroundColor">#FFFFFF</item>
+        <item name="navigationBarColor">#FFFFFF</item>
+        <item name="cardBackgroundColor">#FFFFFF</item>
+        <item name="iconCheckedColor">#03A9F4</item>
+        <item name="iconUncheckedColor">#515151</item>
+    </style>
+
+    <style name="Theme.Lab.Night" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="titleColor">#DDDDDD</item>
+        <item name="subTitleColor">#ACACAC</item>
+        <item name="textPrimaryColor">#F6F6F6</item>
+        <item name="backgroundPrimaryColor">#353535</item>
+        <item name="iconBackgroundColor">#48616C</item>
+        <item name="editTextBackgroundColor">#3C3B3B</item>
+        <item name="navigationBarColor">#3C3B3B</item>
+        <item name="cardBackgroundColor">#3C3B3B</item>
+        <item name="iconCheckedColor">#48616C</item>
+        <item name="iconUncheckedColor">#ACACAC</item>
+    </style>
+
+</resources>

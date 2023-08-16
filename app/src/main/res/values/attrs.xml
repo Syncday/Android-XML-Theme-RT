@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="titleColor" format="color"/>
+    <attr name="subTitleColor" format="color"/>
+    <attr name="textPrimaryColor" format="color"/>
+    <attr name="backgroundPrimaryColor" format="color"/>
+    <attr name="iconBackgroundColor" format="color"/>
+    <attr name="editTextBackgroundColor" format="color"/>
+    <attr name="navigationBarColor" format="color"/>
+    <attr name="iconCheckedColor" format="color"/>
+    <attr name="iconUncheckedColor" format="color"/>
+</resources>
