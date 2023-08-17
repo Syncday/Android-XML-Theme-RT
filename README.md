@@ -1,7 +1,11 @@
 # Android-XML-Theme-RT
 Android动态切换基于XML的主题，适合UI和主题是XML配置的传统项目
 
-支持*主题Style的切换*以及*网络主题*的切换方式（网络主题也同样支持Style的切换）
+支持**主题Style**以及**网络主题**的切换（例如颜色和图标等）
+
+<p align="center">
+    <img src="https://github.com/Syncday/Android-XML-Theme-RT/blob/main/cover.gif" width="240px" alt="预览"/>
+</p>
 
 ## 使用
 建议在Application中使用，通过registerActivityLifecycleCallbacks自动替换，以减少对项目的入侵。
@@ -15,7 +19,7 @@ class App: Application() {
 
     private fun initSkin(){
         //初始化
-        SkinManager.INSTANCE.init(this/**application**/)
+        SkinManager.INSTANCE.init(this)
         //将SkinFactory添加到监听新Skin加载
         SkinManager.INSTANCE.addListener(SkinFactory.INSTANCE)
         //添加View的属性适配器
@@ -52,9 +56,9 @@ class App: Application() {
 
 
 ## Tips
-对于要适配特殊的View，可以实现SkinAdapter接口来实现对view的支持
+适配特殊的Vie：实现SkinAdapter接口以支持view
 
-对以attr指定的内容，使用apk加载资源的方式可以替换attr的类型如color改为drawable也是支持的
+修改资源类型：仅限attr，并且是使用apk加载资源的方式，例如替换color为drawable
 
 注意SkinApplyListner的监听是在切换主题时立即执行的，注意初始化的顺序（参考上面的代码）
 
