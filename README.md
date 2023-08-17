@@ -1,5 +1,5 @@
 # Android-XML-Theme-RT
-Android动态切换基于XML的主题，适合与UI和主题是XML配置的传统项目
+Android动态切换基于XML的主题，适合UI和主题是XML配置的传统项目
 
 支持*主题Style的切换*以及*网络主题*的切换方式（网络主题也同样支持Style的切换）
 
