@@ -1,3 +1,18 @@
+
+
+
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/captures
+.externalNativeBuild
+.cxx
+
 # Gradle files
 .gradle/
 build/
@@ -31,3 +46,7 @@ google-services.json
 
 # Android Profiling
 *.hprof
+
+
+#白名单
+!**/res/raw/*

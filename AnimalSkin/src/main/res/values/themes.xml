@@ -1,0 +1,35 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Theme.Lab">
+        <item name="titleColor">#FAFAFA</item>
+        <item name="subTitleColor">#FFD5D5</item>
+        <item name="textPrimaryColor">#EA9C9C</item>
+        <item name="backgroundPrimaryColor2">#BA6380</item>
+        <item name="iconBackgroundColor">#C1426D</item>
+        <item name="editTextBackgroundColor">#E69A9A</item>
+        <item name="backgroundPrimaryColor">@drawable/shape_background</item>
+        <item name="navigationBarColor">#DF8787</item>
+        <item name="cardBackgroundColor">#DF8787</item>
+        <item name="iconCheckedColor">#C1426D</item>
+        <item name="iconUncheckedColor">#F6C3C3</item>
+    </style>
+
+    <style name="Theme.Lab.Night">
+        <item name="titleColor">#C18686</item>
+        <item name="subTitleColor">#986A6A</item>
+        <item name="textPrimaryColor">#EA9C9C</item>
+        <item name="backgroundPrimaryColor">@drawable/shape_background</item>
+        <item name="backgroundPrimaryColor2">#371F27</item>
+        <item name="iconBackgroundColor">#73253F</item>
+        <item name="editTextBackgroundColor">#553232</item>
+        <item name="navigationBarColor">#553232</item>
+        <item name="cardBackgroundColor">#553232</item>
+        <item name="iconCheckedColor">#C18686</item>
+        <item name="iconUncheckedColor">#986A6A</item>
+    </style>
+
+    <style name="Theme">
+
+    </style>
+
+</resources>
