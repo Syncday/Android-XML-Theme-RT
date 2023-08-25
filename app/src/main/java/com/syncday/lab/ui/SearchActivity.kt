@@ -1,8 +1,9 @@
-package com.syncday.lab
+package com.syncday.lab.ui
 
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.syncday.lab.databinding.ActivitySecondBinding
+import com.syncday.lab.homeBeanList
 
 class SearchActivity: BaseActivity() {
 

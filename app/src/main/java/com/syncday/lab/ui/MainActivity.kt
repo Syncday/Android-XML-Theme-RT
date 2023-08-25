@@ -1,11 +1,15 @@
-package com.syncday.lab
+package com.syncday.lab.ui
 
 import android.content.Intent
+import android.graphics.drawable.Animatable2
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.syncday.lab.R
 import com.syncday.lab.databinding.ActivityMainBinding
+import com.syncday.lab.homeBeanList
 import com.syncday.skin.SkinUtils
 import com.syncday.skin.core.SkinApplyListener
 import com.syncday.skin.core.SkinManager
@@ -34,6 +38,7 @@ class MainActivity : BaseActivity() {
 
 
     private fun initView(){
+
         binding.list.apply {
             adapter = MainAdapter().apply {
                 submitList(homeBeanList)
@@ -42,11 +47,17 @@ class MainActivity : BaseActivity() {
         }
 
         binding.themeStyle.setOnClickListener {
+            val barHeight = binding.contentRoot.paddingTop
+            binding.bloomView.setPivot(it.x+it.width/2f,barHeight+it.y+it.height/2f)
             when(SkinManager.INSTANCE.getThemeName()){
                 "Theme.Lab"->{
+                    binding.bloomView.isExpand(true)
+                    binding.bloomView.watchViewOnce(binding.contentRoot)
                     SkinManager.INSTANCE.applyTheme("Theme.Lab.Night")
                 }
                 "Theme.Lab.Night"->{
+                    binding.bloomView.isExpand(false)
+                    binding.bloomView.watchViewOnce(binding.contentRoot)
                     SkinManager.INSTANCE.applyTheme("Theme.Lab")
                 }
                 else->{
@@ -56,7 +67,7 @@ class MainActivity : BaseActivity() {
         }
 
         binding.searchWrap.setOnClickListener {
-            startActivity(Intent(this,SearchActivity::class.java))
+            startActivity(Intent(this, SearchActivity::class.java))
         }
 
         changeThemeIcon(SkinManager.INSTANCE.getThemeName())
@@ -81,14 +92,22 @@ class MainActivity : BaseActivity() {
     private fun initListener(){
         SkinManager.INSTANCE.addListener(skinApplyListener)
 
+        binding.bloomView.registerAnimationCallback(object : Animatable2.AnimationCallback() {
+                override fun onAnimationStart(drawable: Drawable?) {
+                    binding.themeStyle.isClickable = false
+                }
+                override fun onAnimationEnd(drawable: Drawable?) {
+                    binding.themeStyle.isClickable = true
+                }
 
+            })
 
         binding.navigation.setOnItemSelectedListener {
             when(it.itemId){
-                R.id.home->{
+                R.id.home ->{
                     SkinManager.INSTANCE.removeSkin()
                 }
-                R.id.bbs->{
+                R.id.bbs ->{
                     copyApkToCache(R.raw.animal_skin,"animal_skin")?.let { path->
                         SkinUtils.getApkPackageName(path,this)?.let {name->
                             SkinManager.INSTANCE.applySkinByApk(path,name,null)

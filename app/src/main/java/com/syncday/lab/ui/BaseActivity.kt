@@ -1,4 +1,4 @@
-package com.syncday.lab
+package com.syncday.lab.ui
 
 import android.graphics.Color
 import android.os.Build

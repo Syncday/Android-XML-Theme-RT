@@ -5,6 +5,8 @@ import android.app.Application
 import android.os.Bundle
 import android.preference.PreferenceManager
 import androidx.core.content.edit
+import com.syncday.lab.skin.AdditionAttributeValueAdapter
+import com.syncday.lab.skin.AdditionSkinAdapter
 import com.syncday.skin.DefaultSkinAdapter
 import com.syncday.skin.NavigationBarSkinAdapter
 import com.syncday.skin.SkinUtils.Companion.replaceFactory
@@ -28,8 +30,12 @@ class App: Application() {
         //添加View的属性适配器
         SkinFactory.INSTANCE.addSkinAdapter(
             DefaultSkinAdapter.INSTANCE,
-            NavigationBarSkinAdapter.INSTANCE
+            NavigationBarSkinAdapter.INSTANCE,
+            AdditionSkinAdapter.INSTANCE
         )
+
+        SkinFactory.INSTANCE.setAttributeValueAdapter(AdditionAttributeValueAdapter())
+
         //通过持久化信息加载主题
         PreferenceManager.getDefaultSharedPreferences(this).getString("skin",null)?.run {
             SkinManager.INSTANCE.loadByRemainInfo(JSONObject(this))

@@ -9,4 +9,13 @@
     <attr name="navigationBarColor" format="color"/>
     <attr name="iconCheckedColor" format="color"/>
     <attr name="iconUncheckedColor" format="color"/>
+
+
+    <declare-styleable name="RoundDrawable">
+        <attr name="roundDrawableBackgroundColor" format="color"/>
+        <attr name="roundDrawableElevation" format="dimension"/>
+        <attr name="roundDrawableRadius" format="dimension"/>
+    </declare-styleable>
+
+
 </resources>
