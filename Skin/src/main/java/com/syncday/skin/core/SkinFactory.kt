@@ -20,6 +20,7 @@ class SkinFactory: LayoutInflater.Factory2, SkinApplyListener {
     private val skinAdapters = HashSet<SkinAdapter>()
     private val skinViews = WeakHashMap<View?,SkinView>()
     private var skinManager: SkinManager? = null
+    private var attributeValueAdapter:AttributeValueAdapter? = null
     private val tempTypedValue = TypedValue()
     private val appCompatViewInflater = AppCompatViewInflater()
 
@@ -125,7 +126,6 @@ class SkinFactory: LayoutInflater.Factory2, SkinApplyListener {
                 val resId = attrs.getAttributeValue(i).substring(1).toInt()
                 try {
                     val resourceName = view.resources.getResourceName(resId)
-                    //Log.e(TAG, "collectViewAttributes: ${attrs.getAttributeName(i)},${attrs.getAttributeValue(i)},$resourceName" )
                     //无需替换Android的内部样式
                     if(resourceName.startsWith("android"))
                         continue
@@ -143,6 +143,9 @@ class SkinFactory: LayoutInflater.Factory2, SkinApplyListener {
                 }catch (e: NotFoundException){
                     //resources.getResourceName(id)可能找不到对应id的值而产生报错
                 }
+            }else{
+                //可能需要处理指定属性，提供一个接口
+                attributeValueAdapter?.adapt(view,attributeName,attrs,i)
             }
         }
         if(skinView!=null) {
@@ -168,7 +171,7 @@ class SkinFactory: LayoutInflater.Factory2, SkinApplyListener {
                             break
                     }catch (e:Exception){
                         if (DEBUG)
-                            Log.e(TAG, "applySkinToView: error at [$adapter] when adapt [${it.value}]: $e")
+                            Log.e(TAG, "applySkinToView: error at [$adapter] when adapt [$view,${it.value}]: $e")
                     }
                 }
             }catch (e:NotFoundException){
@@ -185,6 +188,10 @@ class SkinFactory: LayoutInflater.Factory2, SkinApplyListener {
         this.skinAdapters.addAll(skinAdapter)
     }
 
+    fun setAttributeValueAdapter(attributeValueAdapter: AttributeValueAdapter?){
+        this.attributeValueAdapter = attributeValueAdapter
+    }
+
     override fun onSkinApply(skinManager: SkinManager) {
         this.skinManager = skinManager
         if(skinAdapters.isEmpty() || skinViews.isEmpty()){
@@ -199,6 +206,14 @@ class SkinFactory: LayoutInflater.Factory2, SkinApplyListener {
                 iterator.remove()
             }
         }
+    }
+
+    /**
+     * 属性值为非引用类型的属性适配器，用于处理属性值为引用的相关初始化工作。
+     * 例如自定义Drawable的颜色是Skin适配的，但是其实例的创建需要一些参数为非引用值，那么这个适配器会有帮助
+     */
+    interface AttributeValueAdapter{
+        fun adapt(view: View, attrName:String, attrs: AttributeSet, index:Int)
     }
 
 }

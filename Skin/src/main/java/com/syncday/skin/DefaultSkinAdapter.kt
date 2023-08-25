@@ -9,9 +9,10 @@ import androidx.core.content.res.ResourcesCompat
 import com.syncday.skin.SkinUtils.Companion.isColorData
 import com.syncday.skin.core.SkinAdapter
 
-class DefaultSkinAdapter: SkinAdapter {
+open class DefaultSkinAdapter: SkinAdapter {
 
     companion object{
+        @JvmStatic
         val INSTANCE = DefaultSkinAdapter()
     }
 
@@ -26,10 +27,11 @@ class DefaultSkinAdapter: SkinAdapter {
             "textColor"->{
                 (view as? TextView)?.let {
                     if(value.isColorData()) {
-                        it.setTextColor(value.data)
+                        view.setTextColor(value.data)
                     }else{
-                        it.setTextColor(ResourcesCompat.getColorStateList(theme.resources,value.resourceId,theme))
+                        view.setTextColor(ResourcesCompat.getColorStateList(theme.resources,value.resourceId,theme))
                     }
+                    return true
                 }
             }
             "background"->{
@@ -40,6 +42,7 @@ class DefaultSkinAdapter: SkinAdapter {
                 },{
                     view.background = it
                 })
+                return true
             }
             "cardBackgroundColor"->{
                 if(view is CardView){
@@ -50,10 +53,11 @@ class DefaultSkinAdapter: SkinAdapter {
                     },{
 
                     })
+                    return true
                 }
             }
         }
-        return false //不拦截
+        return false
     }
 
 }

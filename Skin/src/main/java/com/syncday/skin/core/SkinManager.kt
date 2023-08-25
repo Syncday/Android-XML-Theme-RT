@@ -12,6 +12,7 @@ import org.json.JSONObject
 open class SkinManager {
 
     companion object{
+        @JvmStatic
         val INSTANCE = SkinManager()
     }
 
